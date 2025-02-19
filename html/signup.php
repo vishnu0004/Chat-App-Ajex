@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Styled Form</title>
+    <script src="../js/jquery.js"></script>
     <link rel="stylesheet" href="../css/signup.css">
 </head>
 <body>
+    <!-- <script> 
+        $(Document).ready(function(){
+            alert("hello you");
+        });
+    </script> -->
 
     <div class="container">
         <?php

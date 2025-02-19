@@ -4,7 +4,7 @@ include('../config/config.php'); // Database connection
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = md5($_POST['password']);
 
     // File upload logic
     $image = $_FILES['image']['name'];
@@ -24,7 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn->query($sql) === TRUE) {
         move_uploaded_file($_FILES['image']['tmp_name'], $target);
-        header("refresh;2 :url = ../html/signup.php?success=Signup successful!");
+        header("Location: ../html/login.php?success=Signup successful!");
+        exit();
+        
     } else {
         header("Location: ../html/signup.php?error=Error: " . $conn->error);
     }

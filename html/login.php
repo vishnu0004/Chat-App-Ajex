@@ -21,6 +21,7 @@
             <input type="submit" value="Login Now" name="submit">
 
         </form>
+        <a href="../html/signup.php">Signup Now</a>
     </div>
 </body>
 
