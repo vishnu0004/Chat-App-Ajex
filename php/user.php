@@ -1,15 +1,18 @@
 <?php
-    function GetUser($username,$conn){
-        $sql = "select * from user where id = ?";
+    function GetUser($id,$conn){
+        $sql = "select * from user Where id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$username]);
+        $stmt->bind_param("i",$id);
+        $stmt->execute();
 
-        if($stmt->RowCount() === 1){
-            $user = $stmt->fetch();
+        $result = $stmt->get_result();
+
+        if($result->num_rows === 1){
+            $user = $result->fetch_assoc();
             return $user;
         }
         else{
-            $user =[];
+            $user = [];
             return $user;
         }
     }
