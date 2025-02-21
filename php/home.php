@@ -43,7 +43,7 @@ if (isset($_SESSION['id'])) {
             if (!empty($datas)) {
                 foreach ($datas as $data) {
             ?>
-                    <li><a href="conv.php?id=<?php echo $data['id'] ?>">
+                    <li><a href="consv.php?id=<?php echo $data['id'] ?>">
                             <div class="image">
                                 <img src="../uploads/<?php echo $data['image']; ?>" style="width: 20%;">
                             </div>
