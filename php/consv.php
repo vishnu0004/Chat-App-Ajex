@@ -6,6 +6,8 @@ if (isset($_SESSION['id'])) {
 
     include('../php/user.php');
 
+    include('../php/massage.php');
+    
     $id = $_GET['id'];
 
     if (!isset($id)) {
@@ -14,8 +16,12 @@ if (isset($_SESSION['id'])) {
     }
     $chatWith = GetUser($id, $conn);
 
+    
+    
+    $chats = getMassage($_SESSION['id'], $chatWith['id'], $conn);
+    
     // echo"<pre>";
-    // print_r($chatWith);
+    // print_r($chats);
     // die();
 
     if (empty($chatWith)) {
@@ -38,10 +44,33 @@ if (isset($_SESSION['id'])) {
         <div id="chat" class="chat">
             <h2>Welcome, <span><?php echo $chatWith['name']; ?></span></h2>
             <div class="msg" id="msg">
+                    <?php
+                        if(!empty($chats)){
+                            foreach($chats as $chat){
+                                if($chat['from_id'] == $_SESSION['id']){
+                                    ?>
+                                    <p class="sent"><?=$chat['massages'];?>
+                                                <small style=" font-size: 9px;"><?=$chat['created_at'];?></small>
+                                            </p>
+                                    
+                                    <?php
+                                }else{
 
-                <p class="sent"><span>hello:</span>you</p>
-                <p class="received"><span>hello:</span>you</p>
-
+                                    ?>
+                                    
+                                    <p class="received"><?=$chat['massages'];?>
+                                    <small style=" font-size: 9px;"><?=$chat['created_at'];?></small></p>
+                                    
+                                    <?php
+                                }
+                            }
+                    ?>
+<?php
+                        }
+                        else{
+                            echo "not sended massages";
+                        }
+?>
             </div>
 
             <div class="input-msg">

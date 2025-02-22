@@ -39,9 +39,15 @@ body{
 }
 
 .msg .sent {
+    /* display: flex; */
     align-self: flex-end;
     background-color: #dcf8c6;
     text-align: right;
+}
+
+.msg .create{
+    
+   
 }
 
 .msg .received {
